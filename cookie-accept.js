@@ -3,22 +3,25 @@ jQuery(document).ready(function(){
     let cookieAcceptedText = 'Используя данный сайт, вы даете согласие на использование файлов cookie, помогающих нам сделать его удобнее для вас';
     let cookieAcceptedBtn = 'Принять';
 
-    function getCookie(name) {
-        let matches = document.cookie.match(new RegExp(
-            "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
-        ));
-        return matches ? decodeURIComponent(matches[1]) : undefined;
-    }    
-    function setCookie(name, value) {
-        document.cookie = name + '=' + encodeURIComponent(value) + '; path=/';
-    }    
-    function deleteCookie(name) {
-        setCookie(name, "", {
-          'max-age': -1
-        })
-    }
+    const cookieDoc = {
+        get: (name) => {
+            let matches = document.cookie.match(new RegExp(
+                "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+            ));
+            return matches ? decodeURIComponent(matches[1]) : undefined;
+        },
+        set: (name, value) => {
+            document.cookie = name + '=' + encodeURIComponent(value) + '; path=/';
+        },
+        destroy: (name) => {
+            cookieDoc.set(name, "", {
+                'max-age': -1
+            })
+        }
+    };
+
     function testCookie(){
-        let cookieAccept = getCookie(cookieAcceptedName);
+        let cookieAccept = cookieDoc.get(cookieAcceptedName);
         if(!cookieAccept || typeof cookieAccept == "undefined"){
             let style = '',
                 html = '';
@@ -57,7 +60,7 @@ jQuery(document).ready(function(){
     testCookie();
 
     jQuery('.btnAcceptCookie').on('click', function(e){
-        setCookie(cookieAcceptedName, 1);
+        cookieDoc.set(cookieAcceptedName, 1);
 
         jQuery('.cookieAccepted').animate({
             opacity: 0
