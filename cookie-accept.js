@@ -35,20 +35,20 @@ jQuery(document).ready(function(){
             html += '</div>';
 
             // STYLE var
-            style += '.cookieAccepted{ position: fixed; width: 100%; bottom: 0; padding: 30px; background-color: #000; z-index: 10000; transition: 0.3s; }',
-            style += '.cookieAccepted .cookieAcceptedContent{ margin: 0 auto; max-width: 998px; display: flex; align-items: center; justify-content: space-between; column-gap: 30px; }',
-            style += '.cookieAccepted .message{ font-size: 1.3em; color: #fff; }',
-            style += '.cookieAccepted .btn{ margin: 0; width: 100%; max-width: 230px; }',
+            style += '.cookieAccepted{ position: fixed; width: 100%; bottom: 0; padding: 30px; background-color: #000; z-index: 10000; transition: 0.3s; }';
+            style += '.cookieAccepted .cookieAcceptedContent{ margin: 0 auto; max-width: 998px; display: flex; align-items: center; justify-content: space-between; column-gap: 30px; }';
+            style += '.cookieAccepted .message{ font-size: 1.3em; color: #fff; }';
+            style += '.cookieAccepted .btn{ margin: 0; width: 100%; max-width: 230px; }';
 
             // STYLE media
-            style += '@media (max-width: 567px){',
-            style += '.cookieAccepted .cookieAcceptedContent{ display: block; }',
-            style += '.cookieAccepted .message{ text-align: center; }',
-            style += '.cookieAccepted .btn{ margin: 30px auto 0; }',
-            style += '}',
+            style += '@media (max-width: 567px){';
+            style += '.cookieAccepted .cookieAcceptedContent{ display: block; }';
+            style += '.cookieAccepted .message{ text-align: center; }';
+            style += '.cookieAccepted .btn{ margin: 30px auto 0; }';
+            style += '}';
 
             // STYLE block
-            style = '<style>' + style + '</style>',
+            style = '<style>' + style + '</style>';
 
             jQuery('BODY').append(html);
             jQuery('BODY').append(style);
@@ -65,7 +65,7 @@ jQuery(document).ready(function(){
         jQuery('.cookieAccepted').animate({
             opacity: 0
         }, 500, function() {
-            jQuery("#cookieAccepted").hide();
+            jQuery(".cookieAccepted").hide();
             jQuery('.cookieAccepted').remove();
         });
 
